@@ -5,24 +5,19 @@ function setup() {
 }
 
 function draw() {
-  stroke(255); 
-  strokeWeight(4);
-  rectMode(CENTER);
-  rect(400,200,200,200);
-  fill(0,0, 255);
+    stroke(255); 
+    strokeWeight(1);
+    fill(0,0, 255);
+
+    var x = 0;
+    while(x<= width){
+       rect(x,200,20,20);
+       x += 22;
+    }
     
-  if(mouseX > 300 && mouseX < 500 && mouseY > 100 && mouseY < 300){
-    fill(255,0, 0);
-  }   
+    for (x=0; x<= width; x+= 22){
+        rect(x,100,20,20);
+    }
+    
 }
 
-function mousePressed(){
-  if(mouseX > 300 && mouseX < 500 && mouseY > 100 && mouseY < 300){
-    on = !on;
-    if(on){
-      background(255,255,255);
-    } else{
-      background(0,0,0);
-    }
-  }
-}
