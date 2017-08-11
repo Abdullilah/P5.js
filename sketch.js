@@ -1,23 +1,19 @@
 var on = false;
 function setup() {
-  createCanvas(800,400);
-  background(0,0,0);
+  createCanvas(800,500);
+  
 }
 
 function draw() {
+    background(0,0,0);
     stroke(255); 
     strokeWeight(1);
-    fill(0,0, 255);
 
-    var x = 0;
-    while(x<= width){
-       rect(x,200,20,20);
-       x += 22;
+    for (var x=25; x<= mouseX; x+= 50){
+        for (var y=25; y<= mouseY; y+= 50){
+            fill(random(0,255),0,random(0,255));
+            ellipse(x,y,25,25);
+        }
     }
-    
-    for (x=0; x<= width; x+= 22){
-        rect(x,100,20,20);
-    }
-    
 }
 
