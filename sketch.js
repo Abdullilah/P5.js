@@ -1,4 +1,3 @@
-var on = false;
 function setup() {
   createCanvas(800,500);
   
