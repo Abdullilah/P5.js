@@ -1,40 +1,28 @@
-var circle1 = {
-    xPos: 50,
-    yPos: 200,
-    speed: 10
-}
-var circle2 = {
-    xPos: 400,
-    yPos: 50,
-    speed: 10
-}
+var on = false;
 function setup() {
-    createCanvas(800,400);
+  createCanvas(800,400);
+  background(0,0,0);
 }
 
 function draw() {
+  stroke(255); 
+  strokeWeight(4);
+  rectMode(CENTER);
+  rect(400,200,200,200);
+  fill(0,0, 255);
     
-    background(0,0,0);
-    
-    stroke(255); 
-    strokeWeight(4);
-    
-    if(circle1.xPos > width-50 || circle1.xPos < 50){
-        circle1.speed = circle1.speed* -1;
-    } 
-    circle1.xPos += circle1.speed;
-    ellipse(circle1.xPos, circle1.yPos, 100,100); 
-    fill(250, 0 , 0);
-
-    if(circle2.yPos > height-50 || circle2.yPos < 50){
-        circle2.speed = circle2.speed* -1;
-    } 
-    circle2.yPos += circle2.speed;
-    ellipse(circle2.xPos, circle2.yPos, 100,100); 
-    fill(0, 250 , 0);
+  if(mouseX > 300 && mouseX < 500 && mouseY > 100 && mouseY < 300){
+    fill(255,0, 0);
+  }   
 }
 
 function mousePressed(){
-    circle1.xPos = 50;
-    circle2.yPos = 50;
+  if(mouseX > 300 && mouseX < 500 && mouseY > 100 && mouseY < 300){
+    on = !on;
+    if(on){
+      background(255,255,255);
+    } else{
+      background(0,0,0);
+    }
+  }
 }
