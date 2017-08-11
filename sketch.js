@@ -1,17 +1,30 @@
-var col = 0;
+var pos = {
+    x: 0,
+    y: 0
+}
+
+var col = {
+    r: 0,
+    g: 0,
+    b: 0
+}
 function setup() {
-    createCanvas(600,200);
+    createCanvas(800,400);
+    background(0,0,0);
 }
 
 function draw() {
-    //col = (255*mouseX)/600;
-    //Using map() to make the same:
-    //map(parameter, minOldrange, maxOldrange, minNewrange, maxNewrange);
-    col = map(mouseX, 0, 600, 0, 255);
-    background(col);
+    
+    pos.x = random(0, 800); // random(minRange,maxRange)
+    pos.y = random(0, 400);
+    
+    col.r = random(0, 255);
+    col.g = random(0, 255);
+    col.b = random(0, 255);
+    
     noStroke(); 
-    fill(255,255,0);
-    ellipse(mouseX,mouseY, 10,10); 
+    fill(col.r, col.g , col.b, 100);
+    ellipse(pos.x,pos.y, 20,20); 
     
 }
 
