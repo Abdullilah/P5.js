@@ -37,8 +37,8 @@ function Ball(x,y){
         ellipse(this.x,this.y,25,25);
     }
     this.move = function(){
-        this.x = this.x + random(-5,5);
-        this.y = this.y + random(-5,5);
+        this.x = this.x + random(-2,2);
+        this.y = this.y + random(-2,2);
     }
 }
 
