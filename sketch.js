@@ -1,21 +1,19 @@
-var ball1 = {
-    x: 100,
-    y: 100,
-    size: 100,
-    stickx:80,
-    sticky: 140,
-    stickWidth: 40,
-    stickHeight: 100
-}
-
-var ball2 = {
-    x: 300,
-    y: 200,
-    size: 150,
-    stickx:280,
-    sticky: 240,
-    stickWidth: 40,
-    stickHeight: 100
+var ball = {
+    x: 400,
+    y: 400,
+    size: 40,
+    display: function(){
+        rect(this.x,this.y,this.size,this.size);
+        fill(0,0,255);
+    },
+    move: function(){
+        this.x = this.x + random(-40,40);
+        this.y = this.y + random(-40,40);
+        if(this.x<0 || this.x > width || this.y<0 || this.y> height){
+            this.x = 400;
+            this.y = 400;
+        }
+    }
 }
 
 function setup() {
@@ -28,21 +26,8 @@ function draw() {
     stroke(255); 
     strokeWeight(1);
     
-    stickPlot(ball1.stickx,ball1.sticky,ball1.stickWidth,ball1.stickHeight);
-    ballPolat(ball1.x,ball1.y,ball1.size,ball1.size);
-    
-    stickPlot(ball2.stickx,ball2.sticky,ball2.stickWidth,ball2.stickHeight);
-    ballPolat(ball2.x,ball2.y,ball2.size,ball2.size);
-}
-
-function stickPlot(x,y,z,m){
-    rect(x,y,z,m);
-    fill(0,0,255);
-}
-
-function ballPolat(x,y,z,m){
-    ellipse(x,y,z,m);
-    fill(255,0,0);
+    ball.display();
+    ball.move();
 }
 
 
