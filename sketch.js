@@ -1,23 +1,36 @@
-var colors = [255,0,0,0,255,0,0,0,255];
-var index = 0;
+var balls = [];
+var numberBalls = 10;
+
 function setup() {
-  createCanvas(800,500);
-  background(0);
+    createCanvas(800,500);
 }
 
 function draw() {
-    textSize(32);
-    fill(100,100,100);
-    text('Change color By clicking', width/4, height/2);
+    background(0);
+    for(var i=0; i<numberBalls; i++){
+        balls[i] = {
+            x: random(0,width),
+            y: random(0,height),
+            display: function(){
+                stroke(255);
+                noFill();
+                strokeWeight(2);
+                ellipse(this.x,this.y,25,25);
+            },
+            move: function(){
+                this.x = this.x + random(-5,5);
+                this.y = this.y + random(-5,5);
+            }
+        }
+    }
+    for(var i=0; i<balls.length; i++){
+        balls[i].display();
+        balls[i].move();
+    }
 }
 
 function mousePressed(){
-    background(colors[index],colors[index+1],colors[index+2]);
-    index += 3;
-    if(index >= colors.length){
-        index = 0;
-    }
-    print(colors[index]);
+    numberBalls += 10;
 }
 
 
