@@ -7,26 +7,32 @@ function setup() {
 
 function draw() {
     background(0);
-    for(var i=0; i<numberBalls; i++){
-        balls[i] = new Ball();
-    }
+    
     for(var i=0; i<balls.length; i++){
         balls[i].display();
         balls[i].move();
     }
+    
 }
 
-function mousePressed(){
-    numberBalls += 10;
+function mouseDragged(){
+    balls.push(new Ball(mouseX, mouseY));
+    if(balls.length > 20){
+        balls.splice(0,1);
+    }
+}
+
+function keyPressed(){
+    balls.splice(0,1);
 }
 
 //Constructor: start with big letter
-function Ball(){
-    this.x = random(0,width);
-    this.y = random(0,height);
+function Ball(x,y){
+    this.x = x;
+    this.y = y;
     this.display = function(){
         stroke(255);
-        noFill();
+        fill(random(0,255),random(0,255),random(0,255),100);
         strokeWeight(2);
         ellipse(this.x,this.y,25,25);
     }
