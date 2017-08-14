@@ -1,28 +1,36 @@
 var balls = [];
-var b1;
-var b2;
 
 var col;
 
 function setup() {
     createCanvas(800,500);
-    b1 = new Ball(100, 200);
-    b2 = new Ball(200, 200);
+    
+    for(var i=0; i<500; i++){
+        balls[i] = new Ball(random(0,width), random(0,width));
+    }
     
 }
 
 function draw() {
     background(0);
     
-    b1.display();
-    b1.move();
-    b2.display();
-    b2.move();
-    
-    var status = b1.overlapping(b2);
-    if(status){
-        b1.changeColor();
-        b2.changeColor();
+    for(var i=0; i<balls.length; i++){
+        balls[i].display();
+        balls[i].move();
+        for(var j=0; j<balls.length; j++){
+            if(i != j && balls[i].overlapping(balls[j])){
+                balls[i].changeColor();
+                balls[j].changeColor();
+                balls[i].r /= 1.001;
+                balls[j].r /= 1.001;
+                if(balls[i].r <= 0){
+                    balls.splice(i,1);
+                }
+                if(balls[j].r <= 0){
+                    balls.splice(j,1);
+                }
+            }
+        }
     }
 }
 
@@ -30,16 +38,16 @@ function draw() {
 function Ball(x,y){
     this.x = x;
     this.y = y;
-    this.r = 40;
+    this.r = 20;
     this.col = color(255,200);
     this.display = function(){
-        stroke(255);
+        noStroke();
         fill(this.col);
         ellipse(this.x,this.y,this.r*2,this.r*2);
     }
     this.move = function(){
-        this.x = this.x + random(-1,1);
-        this.y = this.y + random(-1,1);
+        this.x = this.x + random(-3,3);
+        this.y = this.y + random(-3,3);
     }
     this.overlapping = function(other){
         var d = dist(this.x, this.y, other.x, other.y);
