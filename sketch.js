@@ -2,17 +2,32 @@ var balls = [];
 
 var col;
 
+var canvas;
+var h2;
+var x = 20;
+
 function setup() {
-    createCanvas(800,500);
+    canvas = createCanvas(800,500);
+    //Change the position of an element
+    canvas.position(20,300);
+    h2 = createElement('h2', 'I made this by using createElement form P5.js');
+    createP("This is a paragraph added from P5");
+//    createDiv();
+//    createButton();
+//    createImg();
     
     for(var i=0; i<500; i++){
         balls[i] = new Ball(random(0,width), random(0,width));
     }
-    
+}
+
+function mousePressed(){
+    h2.html("I changed it by mousePress event P5.js");
 }
 
 function draw() {
     background(0);
+    h2.position(x+random(-5,5), 100);
     
     for(var i=0; i<balls.length; i++){
         balls[i].display();
@@ -21,15 +36,11 @@ function draw() {
             if(i != j && balls[i].overlapping(balls[j])){
                 balls[i].changeColor();
                 balls[j].changeColor();
-                balls[i].r /= 1.001;
-                balls[j].r /= 1.001;
-                if(balls[i].r <= 0){
-                    balls.splice(i,1);
-                }
-                if(balls[j].r <= 0){
-                    balls.splice(j,1);
-                }
-            }
+                balls[i].r /= 1.1;
+                balls[j].r /= 1.1;
+                if(balls[i].r <= 0){ balls.splice(i,1); }
+                if(balls[j].r <= 0){ balls.splice(j,1); }
+            }   
         }
     }
 }
