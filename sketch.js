@@ -3,15 +3,16 @@ var balls = [];
 var col;
 
 var canvas;
-var h2;
-var x = 20;
+var col;
+var btn;
 
 function setup() {
+    background(0);
+    col = color(200);
     canvas = createCanvas(800,500);
-    //Change the position of an element
-    canvas.position(20,300);
-    h2 = createElement('h2', 'I made this by using createElement form P5.js');
-    createP("This is a paragraph added from P5");
+    createElement('br');
+    btn = createButton('Click Me');
+    btn.mousePressed(changeColor);
 //    createDiv();
 //    createButton();
 //    createImg();
@@ -21,14 +22,13 @@ function setup() {
     }
 }
 
-function mousePressed(){
-    h2.html("I changed it by mousePress event P5.js");
+function changeColor(){
+    col = color(random(0,255));
 }
 
 function draw() {
-    background(0);
-    h2.position(x+random(-5,5), 100);
     
+    background(col);
     for(var i=0; i<balls.length; i++){
         balls[i].display();
         balls[i].move();
