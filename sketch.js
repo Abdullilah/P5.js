@@ -1,23 +1,17 @@
+var myArr = ["Sami", "David", "Monika", "Samolia"];
+
 function setup() {
+        
+    var btn = select('button');
     
-    canvas = createCanvas(500,500);
+    btn.mousePressed(addEle);
     
-    var firstEleByTagName = select('p');
-    firstEleByTagName.style('color', 'red');
-    
-    var elementsByTagName = selectAll('p');
-    for(var i=0; i<elementsByTagName.length; i++){
-        elementsByTagName[i].style('color', 'red');
-        elementsByTagName[i].mouseOver(myFun);
-    }
-    
-    var eleById = select('#idName');
-    var eleByClass = select('.className');
 }
 
-function myFun(){
-    // Using 'this' to bind the selected element
-    this.style('background', 'green');
+function addEle(){
+    var randVar = floor(random(0,myArr.length));
+    var li = createElement('li', myArr[randVar]);
+    li.parent('myList');
 }
 
 function draw() {
