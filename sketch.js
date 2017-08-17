@@ -7,7 +7,10 @@ var col;
 var btn;
 var slid;
 var slidVal;
-var input;
+var label;
+var inputEle;
+var hoverEle;
+var changeEle;
 
 function setup() {
 
@@ -24,9 +27,30 @@ function setup() {
     slidVal = createElement('span', slid.value());
     createElement('br');
     
-    createElement('p', 'Enter Your Name');
-    input = createInput('');
+    label = createElement('p', 'Enter Your Name');
+    label.style('color','#FF0000');
     
+    inputEle = createInput('');
+    
+    hoverEle = createElement('p', 'Hover Over ME');
+    hoverEle.mouseOver(hoverEleOver);
+    hoverEle.mouseOut(hoverEleOut);
+    
+    changeEle = createElement('p', 'This text will change when you change the input');
+    inputEle.changed(changeElement);
+    
+}
+
+function hoverEleOver(){
+    hoverEle.html("The Mouse is Over ME");
+}
+
+function hoverEleOut(){
+    hoverEle.html("Now It's Out");
+}
+
+function changeElement(){
+    changeEle.html(inputEle.value());
 }
 
 function changeColor(){
@@ -38,6 +62,6 @@ function draw() {
     fill(col);
     ellipse(250,250,slid.value(), slid.value());
     slidVal.html(slid.value());
-    text(input.value(), 10,30);
+    text(inputEle.value(), 10,30);
 }
 
