@@ -1,23 +1,23 @@
-var sliders = [];
-var angle = 0;
+var flower;
+
+function preload(){
+    flower = loadJSON('flower.json');
+}
 
 function setup() {
     
+    createCanvas(400, 400);
     
-    for(var i=0; i<400; i++){
-        sliders[i] = createSlider(0,255, 0);
-    }
 }
 
 
 
 function draw() {
-    var offset = 0;
-    for(var i=0; i<sliders.length; i++){
-        sliders[i].value(map(sin(angle+offset), -1,1, 0, 255));
-        offset += 0.025;
-    }
-    angle += 0.1;
+
+    background(0);
+    fill(flower.color[0], flower.color[1], flower.color[2]);
+    text(flower.name, 10, 30);
+    textSize(30);
     
 }
 
