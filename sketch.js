@@ -1,30 +1,23 @@
+var sliders = [];
+var angle = 0;
+
 function setup() {
     
-    var dragArea = select('.dragHere');
     
-    dragArea.dragOver(highLight);
-    dragArea.dragLeave(unhighLight);
-    dragArea.drop(myFile, unhighLight);
-    
+    for(var i=0; i<400; i++){
+        sliders[i] = createSlider(0,255, 0);
+    }
 }
 
-function highLight(){
-    this.style('background', '#ccc');
-}
 
-function unhighLight(){
-    this.style('background', '#fff');
-}
-
-function myFile(file){
-    createP(file.name);
-    createP(file.size);
-    createP(file.type);
-    var img = createImg(file.data);
-    img.size(200,200);
-}
 
 function draw() {
+    var offset = 0;
+    for(var i=0; i<sliders.length; i++){
+        sliders[i].value(map(sin(angle+offset), -1,1, 0, 255));
+        offset += 0.025;
+    }
+    angle += 0.1;
     
 }
 
