@@ -1,17 +1,20 @@
 var myArr = ["Sami", "David", "Monika", "Samolia"];
 
 function setup() {
-        
-    var btn = select('button');
     
-    btn.mousePressed(addEle);
+    for(var i=0; i<10; i++){
+        var randVar = floor(random(0,myArr.length));
+        var li = createElement('li', myArr[randVar]);
+        li.class('green');
+        li.parent('myList');
+        li.mousePressed(myFun);
+    }
     
 }
 
-function addEle(){
-    var randVar = floor(random(0,myArr.length));
-    var li = createElement('li', myArr[randVar]);
-    li.parent('myList');
+function myFun(){
+    this.removeClass('green');
+    this.class('blue');
 }
 
 function draw() {
